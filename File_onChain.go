@@ -16,11 +16,11 @@ type File_onChain struct{
 }
 
 
-func (t *basicInfo) Init (stub shim.ChaincodeStubInterface) pb.Response{
+func (t *File_onChain) Init (stub shim.ChaincodeStubInterface) pb.Response{
 	return shim.Success(nil)
 }
 
-func (t *basicInfo) Invoke(stub shim.ChaincodeStubInterface) pb.Response{
+func (t *File_onChain) Invoke(stub shim.ChaincodeStubInterface) pb.Response{
 	funcName,args := stub.GetFunctionAndParameters()
 	if(funcName=="save"){
 		return t.saveBasic(stub,args)
@@ -31,7 +31,7 @@ func (t *basicInfo) Invoke(stub shim.ChaincodeStubInterface) pb.Response{
 	}
 }
 
-func (t *basicInfo) saveBasic(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+func (t *File_onChain) saveBasic(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	if(len(args)!=2){
 		return shim.Error("except two args")
 	}else{
@@ -44,7 +44,7 @@ func (t *basicInfo) saveBasic(stub shim.ChaincodeStubInterface, args []string) p
 
 }
 
-func (t *basicInfo) queryBasic(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *File_onChain) queryBasic(stub shim.ChaincodeStubInterface, args []string) pb.Response{
 
 	if(len(args)!=1){
 		return shim.Error("except one arg")
@@ -58,8 +58,8 @@ func (t *basicInfo) queryBasic(stub shim.ChaincodeStubInterface, args []string) 
 }
 
 func main(){
-	err:=shim.Start(new(basicInfo))
+	err:=shim.Start(new(File_onChain))
 	if(err!=nil){
-		fmt.Println("emr basicInfo chaincode start error")
+		fmt.Println("emr File_onChain chaincode start error")
 	}
 }
