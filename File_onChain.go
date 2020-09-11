@@ -32,8 +32,8 @@ func (t *File_onChain) Invoke(stub shim.ChaincodeStubInterface) pb.Response{
 }
 
 func (t *File_onChain) saveBasic(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	if(len(args)!=2){
-		return shim.Error("except two args")
+	if(len(args)!=5){
+		return shim.Error("except five args")
 	}else{
 		err:=stub.PutState(args[0],[]byte(args[1]))
 		if(err!=nil) {
